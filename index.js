@@ -27,8 +27,9 @@ async function findAndRemove(dir) {
   const { option: selectList } = await inquirer.selectToRemove(choices)
 
   selectList.forEach((index) => {
-    // fs.rmdirSync(fileList[index].path, { recursive: true })
-    console.log(`${fileList[index].path} removed!`)
+    fs.rmdir(fileList[index].path, { recursive: true }, () => {
+      console.log(`${fileList[index].path} removed!`)
+    })
   })
 }
 program
